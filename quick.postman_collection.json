@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "503fd556-9cb8-483e-a7d6-9ed88a0f6f28",
+		"name": "quick",
+		"description": "# Documentacion API\n\n## __SignIn__\n-   Method: POST\n-   Path: /api/signin/\n-   Parameters:\n    -   email: string\n    -   password: string\n    -   password_confirmation: string\n-   response:\n    -   username: string\n    -   mail: string\n-   Example:\n```json\n{\n    \"email\": \"test1@gmail.com\",\n    \"password\": \"1234qwe.\",\n    \"password_confirmation\": \"1234qwe.\"\n}\n```\n\n## __Create Token__\n-   Method: POST\n-   Path: /api/token/\n-   Parameters:\n    -   username: string (the registered mail)\n    -   password: string\n-   response:\n    -   token: string\n    -   refresh: string\n-   Example\n```json\n{\n    \"username\":\"test1@gmail.com\",\n    \"password\":\"1234qwe.\"\n}\n```\n\n## __Create one product__\n-   Method: POST\n-   Path: /api/product/\n-   Parameters:\n    -   name: string\n    -   description: string\n    -   attributes: list/array of strings\n-   response:\n    -   product_id: int\n    -   product_name: string\n-   Example\n```\n{\n    \"product_id\": 4,\n    \"product_name\": \"new product 6\"\n}\n```\n\n## __get products__\n-   Method: GET\n-   Path: /api/product/\n-   Query_parameters:\n    -   id: int | optional\n-   response:\n    -   json/object or list of json/objects\n        -   id: int\n        -   is_active: boolean\n        -   name: string\n        -   description: string\n        -   attributes: list/array of strings\n-   Example\n```\nURL: http://127.0.0.1:8010/api/product?id=1\n{\n    \"id\": 1,\n    \"is_active\": true,\n    \"name\": \"greatProduct\",\n    \"description\": \"a great description\",\n    \"attributes\": [\n        \"good\",\n        \"awesome\",\n        \"pro\"\n    ]\n}\n```\n```\nURL: http://127.0.0.1:8010/api/product\n[\n    {\n        \"id\": 1,\n        \"is_active\": true,\n        \"name\": \"greatProduct\",\n        \"description\": \"a great description\",\n        \"attributes\": [\n            \"good\",\n            \"awesome\",\n            \"pro\"\n        ]\n    },\n    {\n        \"id\": 2,\n        \"is_active\": true,\n        \"name\": \"another great product\",\n        \"description\": \"awesome description\",\n        \"attributes\": [\n            \"little\",\n            \"aio\",\n            \"compact\"\n        ]\n    }\n]\n```\n## __Create/Update/Delete client__\n-   Method: POST\n-   Path: /api/client/\n-   Parameters:\n    -   initial_key: string | action\n        -   id: int | optional\n        -   first_name: string\n        -   last_name: string\n        -   email: string\n-   response:\n    -   id: int\n    -   first_name: string\n    -   last_name: string\n    -   email: string\n-   Example\n```\n{\n    \"delete\": {\n        \"id\": 4,\n        \"first_name\": \"client4\",\n        \"last_name\": \"importatn\",\n        \"email\": \"client4@gmail.com\"\n    }\n}\n```\n```\n{\n    \"create\": {\n        \"first_name\": \"client4\",\n        \"last_name\": \"importatn\",\n        \"email\": \"client4@gmail.com\"\n    }\n}\n```\n\n## __get clients__\n-   Method: GET\n-   Path: /api/client/\n-   Query_parameters:\n    -   id: int | optional\n-   response:\n    -   json/object or list of json/objects\n        -   id: int\n        -   first_name: string\n        -   last_name: string\n        -   email: string\n-   Example\n```\nURL http://127.0.0.1:8010/api/client\n[\n    {\n        \"id\": 1,\n        \"document\": 100000000,\n        \"first_name\": \"client0\",\n        \"last_name\": \"important\",\n        \"email\": \"client0@example.com\"\n    },\n    {\n        \"id\": 2,\n        \"document\": 100000001,\n        \"first_name\": \"client1\",\n        \"last_name\": \"important\",\n        \"email\": \"client1@important.com\"\n    },\n]\n```\n```\nURL http://127.0.0.1:8010/api/client?id=1\n{\n    \"id\": 1,\n    \"document\": 100000000,\n    \"first_name\": \"client0\",\n    \"last_name\": \"important\",\n    \"email\": \"client0@example.com\"\n}\n```\n\n## __Get file clients__\n-   Method: GET\n-   Path: /api/clients/\n-   Query_parameters:\n    -   id: int | optional\n-   Response:\n    -   CSV File\n-   Example URLS:\n    -   http://127.0.0.1:8010/api/clients?id=1\n    -   http://127.0.0.1:8010/api/clients/\n\n## __Create file clients__\n-   Method: POST\n-   Path: /api/clients/\n-   Parameters:\n    -   file: CSV File\n-   Response:\n    -   Array of clients",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13394564"
+	},
+	"item": [
+		{
+			"name": "Create one product",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUzNzY3NDQzLCJpYXQiOjE2NTM3NjM4NDMsImp0aSI6IjE2ZGQ5NGZiMDRhYTRkNGU5MmZjMjQzMzU1YjYwZjA0IiwidXNlcl9pZCI6NX0.71OhpBDYYqOI1rFA0ySBuLF8B8p2hf4RBQS8ZVPUKwA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"new product 4\",\n    \"description\": \"awesome description for the product 4\",\n    \"attributes\": [\"attr1\", \"attr2\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8010/api/product/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"product",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"test1@gmail.com\",\n    \"password\":\"1234qwe.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8010/api/token/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"token",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test12@gmail.com\",\n    \"password\": \"1234qwe.\",\n    \"password_confirmation\": \"1234qwe.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8010/api/signUp/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"signUp",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get clients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8010/api/client?id=",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"client"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUzNzY3NDQzLCJpYXQiOjE2NTM3NjM4NDMsImp0aSI6IjE2ZGQ5NGZiMDRhYTRkNGU5MmZjMjQzMzU1YjYwZjA0IiwidXNlcl9pZCI6NX0.71OhpBDYYqOI1rFA0ySBuLF8B8p2hf4RBQS8ZVPUKwA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8010/api/product",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create one Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"delete\": {\n        \"id\": 4,\n        \"first_name\": \"client4\",\n        \"last_name\": \"importatn\",\n        \"email\": \"client4@gmail.com\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8010/api/client/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"client",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_file_clients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8010/api/clients/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create_file_clients",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/tarkark/Downloads/clients.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8010/api/clients/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8010",
+					"path": [
+						"api",
+						"clients",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

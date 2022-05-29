@@ -1,0 +1,5 @@
+#write a .gitignore for django
+*.pyc
+*.log
+__pycache__
+logs
